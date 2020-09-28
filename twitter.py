@@ -17,10 +17,10 @@ import json
 import wget
 
 #Twitter API credentials
-consumer_key = "GbapYFulUNvzz3TtNxwODoPbZ"
-consumer_secret = "X0H2W2zDcdMWstpDPhqMAQx8mfqwpP9okLR4n3ixG6NNiJDBQZ"
-access_key = "1309984548936183808-sre6U4aoxdUuEJmHNv32sIifhTq5Dm"
-access_secret = "l53q8SJtvyXSeVJ3A9lCHbqxDXYzAVleRkxvd9YRF7Q1D"
+consumer_key = "enter your own key"
+consumer_secret = "enter your own key"
+access_key = "enter your own key"
+access_secret = "enter your own key"
 
 
 if __name__ == '__main__':
