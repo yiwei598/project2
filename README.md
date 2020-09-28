@@ -13,7 +13,7 @@ In this project phase 1, I used google NLP to analyze the sentiment of text docu
 If we type three different text document into our command, and it will return the score of each document and told us it becomes better or not compared to previous one.
 
 
-The report is in _doc_ and the screenshot result is shown. 
+The report is in project2 phase 1.docx and the screenshot result is shown. 
  
 
 
