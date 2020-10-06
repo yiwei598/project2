@@ -1,0 +1,93 @@
+#!/usr/bin/env python
+# encoding: utf-8
+#Author - yiwei zhang
+
+
+import argparse
+
+from sys import argv
+from google.cloud import language
+from google.cloud.language import enums
+from google.cloud.language import types
+
+import tweepy #https://github.com/tweepy/tweepy
+import json
+
+#Twitter API credentials
+consumer_key = "GbapYFulUNvzz3TtNxwODoPbZ"
+consumer_secret = "X0H2W2zDcdMWstpDPhqMAQx8mfqwpP9okLR4n3ixG6NNiJDBQZ"
+access_key = "1309984548936183808-sre6U4aoxdUuEJmHNv32sIifhTq5Dm"
+access_secret = "l53q8SJtvyXSeVJ3A9lCHbqxDXYzAVleRkxvd9YRF7Q1D"
+
+
+def print_result(annotations):
+    score = annotations.document_sentiment.score
+    magnitude = annotations.document_sentiment.magnitude
+
+    for index, sentence in enumerate(annotations.sentences):
+        sentence_sentiment = sentence.sentiment.score
+        print('Sentence {} has a sentiment score of {}'.format(
+            index, sentence_sentiment))
+
+    print('Overall Sentiment: score of {} with magnitude of {}'.format(
+        score, magnitude))
+    return 0
+
+
+def analyze(movie_review_filename):
+    """Run a sentiment analysis request on text within a passed filename."""
+    client = language.LanguageServiceClient()
+
+    with open(movie_review_filename, 'r', encoding='utf-8') as review_file:
+        # Instantiates a plain text document.
+        content = review_file.read()
+
+    document = types.Document(
+        content=content,
+        type=enums.Document.Type.PLAIN_TEXT)
+    annotations = client.analyze_sentiment(document=document)
+
+    score = annotations.document_sentiment.score
+    # Print the results
+    print_result(annotations)
+
+    return score
+
+def compare(score):
+    if score >= initial_score:
+        print("Sentiment becomes better!")
+    else:
+        print("Sentiment becomes worse.")
+
+
+if __name__ == '__main__':
+    #pass in the username of the account you want to download
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_key, access_secret)
+    api = tweepy.API(auth, wait_on_rate_limit=True)
+
+
+    search_word = "#gun -filter:retweets"
+    date_since = 2020-9-1
+    tweets = tweepy.Cursor(api.search, q=search_word, lang="en", since=date_since).items(100)
+
+    file = open("datafile.txt","w")
+    L = [""]
+    file.close()
+
+    media_files = set()
+    media_url = []
+
+    for tweet in tweets:
+        print(tweet.text)
+        file = open("datafile.txt", "a", encoding='utf-8')  # append mode
+        file.write(tweet.text)
+        file.close()
+
+
+    file = open("datafile.txt", "r",encoding='utf-8')
+    print("Output of Readlines after appending")
+    print(file.readlines())
+    file.close()
+
+    analyze("datafile.txt")
