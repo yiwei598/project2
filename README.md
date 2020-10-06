@@ -15,6 +15,7 @@ If we type three different text document into our command, and it will return th
 
 The report is in project2 phase 1.docx and the screenshot result is shown. 
  
-In this project phase 2, I used twitter APIs to search by hastag to find tweet about some tweet or comment about specific events, characters or the works. And then I used Google NLP to analyse the sentiment accroding to tweets I collected and get a overall result of sentiment about that specific event.
+In this project phase 2, I used twitter APIs to search by hastag to find tweet about some tweet or comment about specific events, characters or the works. And then I used Google NLP to analyse the sentiment accroding to tweets I collected and get a overall result of sentiment about that specific event. In order to do that, I create a local file to collect
+tweets text and save one tweets for one line and let python file read this file to do sentiment analyze.
 
 The Test result is in project2 phase 2.docx.
